@@ -1,11 +1,25 @@
-
 name: Autograding
-on: [push]
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
 jobs:
   autograding:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-      - run: python scripts/check_all_tasks.py
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run checks
+        run: python scripts/check_all_tasks.py
+
+      - name: Publish Autograding Results
+        if: always()
+        uses: education/autograding@v1
