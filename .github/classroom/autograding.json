@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "All tasks check",
+      "run": "python scripts/check_all_tasks.py",
+      "comparison": "included",
+      "output": "RESULT: PASS",
+      "timeout": 30,
+      "points": 100
+    }
+  ]
+}
